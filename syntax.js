@@ -125,3 +125,63 @@ import * as path from 'path';
 // Import a single export of module file-tools.mjs
 import {isTextFilePath} from './file-tools.mjs';
 
+//classes
+class Person {
+constructor(name) {
+this.name = name;
+}
+describe() {
+return `Person named ${this.name}`;
+}
+static logNames(persons) {
+for (const person of persons) {
+console.log(person.name);
+}
+}
+}
+
+class Employee extends Person {
+constructor(name, title) {
+super(name);
+this.title = title;
+}
+describe() {
+return super.describe() +
+` (${this.title})`;
+}
+}
+
+const jane = new Employee('Jane', 'CTO');
+assert.equal(
+jane.describe(),
+'Person named Jane (CTO)');
+
+//Exception handling
+function throwsException() {
+throw new Error('Problem!');
+}
+
+function catchesException() {
+try {
+throwsException();
+} catch (err) {
+assert.ok(err instanceof Error);
+assert.equal(err.message, 'Problem!');
+}
+}
+/*Note:
+• try-finally and try-catch-finally are also supported.
+• We can throw any value, but features such as stack traces are only supported by
+Error and its subclasses.
+*/
+
+//Casing styles
+/*
+Common casing styles for concatenating words are:
+• Camel case: threeConcatenatedWords
+• Underscore case (also called snake case): three_concatenated_words
+• Dash case (also called kebab case): three-concatenated-words
+
+In general, JavaScript uses camel case, except for constants.
+*/
+
