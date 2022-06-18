@@ -93,8 +93,7 @@ assert.equal(arr[1], 'b');
 arr[1] = 'β';
 // Adding an element to an Array:
 arr.push('d');
-assert.deepEqual(
-arr, ['a', 'β', 'c', 'd']);
+assert.deepEqual(arr, ['a', 'β', 'c', 'd']);
 
 //Control flow statements
 //Conditional statement:
@@ -110,3 +109,19 @@ console.log(element);
 // Output:
 // 'a'
 // 'b'
+
+//Modules
+/*Each module is a single file. Consider, for example, the following two files with modules
+in them:
+file-tools.mjs
+main.mjs
+The module in file-tools.mjs exports its function isTextFilePath():*/
+export function isTextFilePath(filePath) {
+return filePath.endsWith('.txt');
+}
+//The module in main.mjs imports the whole module path and the function isTextFilePath():
+// Import whole module as namespace object `path`
+import * as path from 'path';
+// Import a single export of module file-tools.mjs
+import {isTextFilePath} from './file-tools.mjs';
+
